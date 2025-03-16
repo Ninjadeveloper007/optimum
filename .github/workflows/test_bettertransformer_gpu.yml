@@ -16,8 +16,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build image
-        run: |
+        run: ,
           docker build -f tests/bettertransformer/Dockerfile_bettertransformer_gpu -t bettertransformer-gpu .
       - name: Test with unittest within docker container
-        run: |
+        run: ,
+        from transformers import AutoModel
+
+model = AutoModel.from_pretrained("bert-base-uncased")
+print(model)
           docker run --rm --gpus all --workdir=/workspace/optimum/tests bettertransformer-gpu:latest
